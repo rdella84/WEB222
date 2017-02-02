@@ -7,24 +7,25 @@
 var grader = function(mark){
   var letter;
   
-  if(mark > 80 && mark < 100){
+  if(mark >= 80){
     letter = 'A';
   }
-  else if(mark > 70 && mark <79){
+  else if(mark >= 70){
     letter = 'B';
   }
-  else if(mark > 60 && mark < 69){
+  else if(mark >= 60){
     letter = 'C';
   }
-  else if(mark > 50 && mark < 59){
+  else if(mark >= 50){
     letter = 'D';
   }
-  else if(mark > 0 && mark < 49){
+  else if(mark >= 0){
     letter = 'F';
   }
   
   return letter;
 }
+
 
 /******************************************
 *    showMultiples(num, numMultiples)
@@ -32,14 +33,23 @@ var grader = function(mark){
 *   Purpose:  Multiplies the first parameter with the second parameter
 *******************************************/
 
-var showMultiples = fuction(num, numMultiples){
-  var retVal;
-  var i;
-  for(i=0, i < numMultiples; i++){
-    retVal = (num + "x" + i + "=" + num*i \n);
+function showMultiples(num, numMultiple){
+  var prtOut, retVal;
+  var sum, mult = 1;
+  
+  for(var i=0; i < numMultiple; i++){
+    prtOut = ((num) + " x " + (mult) + " = ");
+    sum = num * mult;
+    mult++;
+    
+    retVal = prtOut + sum + "\n";
+    console.log(retVal);
   }
+  
   return retVal;
 }
+
+
 
 /******************************************
 *   largeNum(num1, num2);
@@ -56,6 +66,8 @@ var largerNum = function(num1, num2){
     higher = num2;
   return higher;
 }
+
+
 
 /******************************************
 *   tempConverter(temperature, convert);
@@ -75,12 +87,25 @@ function tempConvert(temperature, convert){
 
 
 
+/******************************************
+*   evenNumbers(minNumber, maxNumber);
+*
+*   Purpose:  Takes the minNumber and incremented by 2 until the maxNumber
+*******************************************/
 
+var evenNumbers = function(minNumber, maxNumber){
+  var str = "";
+  if(maxNumber % 2 !== 0){
+    maxNumber--;
+  }
 
-
-
-
-
+  
+  for(var i = minNumber; i <= maxNumber; i+=2){
+   str += i + ", ";
+   
+  }
+  return str = str.replace(/,\s*$/, "");
+}
 
 
 
@@ -111,8 +136,6 @@ var passingAverage = function(){
   
   return ret;
 }
-
-
 
 
 
