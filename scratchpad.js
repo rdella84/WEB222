@@ -73,6 +73,50 @@ function tempConvert(temperature, convert){
   return temperature.toFixed(1);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+/******************************************
+*   passingAverage();
+*
+*   Purpose: Adds all the unknown parameters and calculate the average then returns true if average is > 49
+******************************************/
+
+var passingAverage = function(){
+  
+  var sum = 0, cnt = arguments.length;
+  var ret = false;
+  
+  for (var i = 0; i < arguments.length; i++){
+    console.log(arguments[i]);
+    sum += arguments[i];
+  }
+  
+  console.log(cnt)
+  sum = sum / cnt;
+  if(sum > 49)
+    ret = true;
+  else 
+    ret;
+  
+  console.log(sum)
+  
+  return ret;
+}
+
+
+
+
+
+
 /********************************
  *          TEST DATA           *
  *  write all of your functions *

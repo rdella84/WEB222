@@ -11,6 +11,8 @@ function showMultiples(num, numMultiple){
   for(var i=0; i < numMultiple; i++){
     prtOut = ((num) + " x " + (mult) + " = ");
     sum = num * mult;
+    mult++;
+    
     retVal = prtOut + sum + "\n";
   }
   
