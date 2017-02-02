@@ -14,10 +14,10 @@ function showMultiples(num, numMultiple){
     mult++;
     
     retVal = prtOut + sum + "\n";
+    console.log(retVal);
   }
   
   return retVal;
-  
 }
 
 

@@ -5,22 +5,23 @@
 *******************************************/
 
 var evenNumbers = function(minNumber, maxNumber){
-  var str = [];
+  var str = "";
   if(maxNumber % 2 !== 0){
     maxNumber--;
   }
+
   
-  for(var i= minNumber; i < maxNumber; i++){
-   str[i] = minNumber + 2;
-   var strcontner = str[i].concat(minNumber + 2);
+  for(var i = minNumber; i <= maxNumber; i+=2){
+   str += i + ", ";
+   
   }
-  return strcontner;
+  return str = str.replace(/,\s*$/, "");
 }
 
 
 console.log('evenNumbers(4,13) returns: ' + evenNumbers(4,13));
-//console.log('evenNumbers(3,10) returns: ' + evenNumbers(3,10));
-//console.log('evenNumbers(8,21) returns: ' + evenNumbers(8,21));
+console.log('evenNumbers(3,10) returns: ' + evenNumbers(3,10));
+console.log('evenNumbers(8,21) returns: ' + evenNumbers(8,21));
 
 
 

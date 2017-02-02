@@ -1,3 +1,14 @@
+/*********************************************************************************
+* WEB222 – Assignment 01
+* I declare that this assignment is my own work in accordance with Seneca Academic Policy. No part of this
+* assignment has been copied manually or electronically from any other source (including web sites) or
+* distributed to other students.
+*
+* Name: Regio Della Student ID: 109324160 Date: ________________
+*
+********************************************************************************/
+
+
 /******************************************
 *    grader(mark)
 *
@@ -7,24 +18,25 @@
 var grader = function(mark){
   var letter;
   
-  if(mark > 80 && mark < 100){
+  if(mark >= 80){
     letter = 'A';
   }
-  else if(mark > 70 && mark <79){
+  else if(mark >= 70){
     letter = 'B';
   }
-  else if(mark > 60 && mark < 69){
+  else if(mark >= 60){
     letter = 'C';
   }
-  else if(mark > 50 && mark < 59){
+  else if(mark >= 50){
     letter = 'D';
   }
-  else if(mark > 0 && mark < 49){
+  else if(mark >= 0){
     letter = 'F';
   }
   
   return letter;
 }
+
 
 /******************************************
 *    showMultiples(num, numMultiples)
@@ -32,14 +44,23 @@ var grader = function(mark){
 *   Purpose:  Multiplies the first parameter with the second parameter
 *******************************************/
 
-var showMultiples = fuction(num, numMultiples){
-  var retVal;
-  var i;
-  for(i=0, i < numMultiples; i++){
-    retVal = (num + "x" + i + "=" + num*i \n);
+function showMultiples(num, numMultiple){
+  var prtOut, retVal;
+  var sum, mult = 1;
+  
+  for(var i=0; i < numMultiple; i++){
+    prtOut = ((num) + " x " + (mult) + " = ");
+    sum = num * mult;
+    mult++;
+    
+    retVal = prtOut + sum + "\n";
+    console.log(retVal);
   }
+  
   return retVal;
 }
+
+
 
 /******************************************
 *   largeNum(num1, num2);
@@ -56,6 +77,8 @@ var largerNum = function(num1, num2){
     higher = num2;
   return higher;
 }
+
+
 
 /******************************************
 *   tempConverter(temperature, convert);
@@ -75,12 +98,25 @@ function tempConvert(temperature, convert){
 
 
 
+/******************************************
+*   evenNumbers(minNumber, maxNumber);
+*
+*   Purpose:  Takes the minNumber and incremented by 2 until the maxNumber
+*******************************************/
 
+var evenNumbers = function(minNumber, maxNumber){
+  var str = "";
+  if(maxNumber % 2 !== 0){
+    maxNumber--;
+  }
 
-
-
-
-
+  
+  for(var i = minNumber; i <= maxNumber; i+=2){
+   str += i + ", ";
+   
+  }
+  return str = str.replace(/,\s*$/, "");
+}
 
 
 
@@ -96,25 +132,34 @@ var passingAverage = function(){
   var ret = false;
   
   for (var i = 0; i < arguments.length; i++){
-    console.log(arguments[i]);
     sum += arguments[i];
   }
   
-  console.log(cnt)
   sum = sum / cnt;
   if(sum > 49)
     ret = true;
   else 
-    ret;
-  
-  console.log(sum)
-  
+    ret; 
   return ret;
 }
 
+/******************************************
+* counter() with countOne() as the nested function
+*
+* Purpose: In the counter function a num variable is created and initialized by 0
+*          and the value is incremented by one inside the countOne function.
+*          Everytime it is ran the old value is remembered and initilized again by 1 hense
+*          each time its called the value increase by 1;
+******************************************/
 
-
-
+function counter(){
+  var num = 0;
+  function countOne(){
+    num += 1;
+    return num;
+  };
+  return countOne;
+}
 
 
 /********************************
