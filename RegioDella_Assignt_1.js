@@ -4,7 +4,7 @@
 * assignment has been copied manually or electronically from any other source (including web sites) or
 * distributed to other students.
 *
-* Name: Regio Della Student ID: 109324160 Date: ________________
+* Name: Regio Della Student ID: 109324160 Date: Feb 4, 2017
 *
 ********************************************************************************/
 
@@ -39,22 +39,23 @@ var grader = function(mark){
 
 
 /******************************************
-*    showMultiples(num, numMultiples)
+*    showMultiples(num, numMultiples);
 *
 *   Purpose:  Multiplies the first parameter with the second parameter
 *******************************************/
 
 function showMultiples(num, numMultiple){
-  var prtOut, retVal;
+  var prtOut, retVal = "";
   var sum, mult = 1;
+
+ 
   
   for(var i=0; i < numMultiple; i++){
-    prtOut = ((num) + " x " + (mult) + " = ");
     sum = num * mult;
-    mult++;
-    
-    retVal = prtOut + sum + "\n";
-    console.log(retVal);
+    prtOut = ("\n" + (num) + " x " + (mult) + " = " + sum);
+   
+    retVal += prtOut;
+    mult++; 
   }
   
   return retVal;
