@@ -1,3 +1,17 @@
+/*********************************************************************************
+* WEB222 – Assignment 02
+* I declare that this assignment is my own work in accordance with Seneca Academic Policy.
+* No part of this assignment has been copied manually or electronically from any other source
+* (including web sites) or distributed to other students.
+*
+* Name: Regio Della Student ID: 109324160 Date: February 18, 2017
+*
+********************************************************************************/ 
+
+
+
+
+
 /**********************************
  *          ALL DATA              *
  *  write your CustomerDB Object  *
@@ -28,49 +42,178 @@ var allData = [
 ];
 
 
-
-
  /*  Write your CustomerDB Object Here.  Do not forget to uncomment the "TEST DATA" section
      when you're ready.  Your code is required to run against these tests before you submit */
 
 var CustomerDB = {
-    customers: [],
-    addresses: [],
-    stores: [],
+  customers: [],
+  addresses: [],
+  stores: [],
   
-    insertData: function(someData){
-      for(var i = 0; i < someData.length; i++){
-        if(someData[i].type == "stores"){
-          this.addStore(someData[i].data);
-        }
-        else if(someData[i].type == "customers"){
-          this.addCustomer(someData[i].data);
-          
-        }
-        else if(someData[i].type == "addresses"){
-          this.addAddress(someData[i].data);
+  insertData: function(allData){
+    for(var i = 0; i < allData.length; i++){
+      if(allData[i].type == "store"){
+        this.addStore(allData[i].data);
+      }
+      else if(allData[i].type == "customer"){
+        this.addCustomer(allData[i].data);  
+      }
+      else if(allData[i].type == "address"){
+        this.addAddress(allData[i].data);
+      }
+    }    
+  },
+  
+  
+  
+  /***ALL CUSTOMERS METHODS***/
+  
+  addCustomer: function(customerObj){
+    customerObj.add_date = new Date();
+    this.customers.push(customerObj);
+  },
+  
+  outputCustomerById: function(customer_id){
+      var c_array = this.customers;
+      for(var i = 0; i < c_array.length; i++){ 
+         if(c_array[i].customer_id === customer_id){
+            var address = this.getAddressById(c_array[i].address_id);
+           
+            console.log("Customer " + c_array[i].customer_id + ": " + c_array[i].first_name + " " +
+                        c_array[i].last_name + " " +"(" + c_array[i].email + ")");
+            console.log("Home Address: " + address.address + " " + address.city + ", " +
+                       address.province + ". " + address.postal_code); // getAddressById();
+            console.log("Joined: " + c_array[i].add_date);  // CHECK DATE FUNCTION
+         }
+      }
+  },
+    
+  outputAllCustomers: function(){
+    var c_array = this.customers; 
+    console.log("All Customers");
+    console.log("\n");
+    for(var i = 0; i < c_array.length; i++){
+       var address = this.getAddressById(c_array[i].address_id);
+      
+       console.log("Customer " + c_array[i].customer_id + ": " + c_array[i].first_name + " " +
+                    c_array[i].last_name + " " +"(" + c_array[i].email + ")");
+       console.log("Home Address: " + address.address + " " + address.city + ", " +
+                       address.province + ". " + address.postal_code); // getAddressById();
+       console.log("Joined: " + c_array[i].add_date);  // CHECK DATE FUNCTION
+       console.log("\n");
+     }
+  },
+  
+  outputCustomersByStore: function(store_id){
+     var c_array = this.customers;
+     console.log("Customers in Store: " + this.getStoreById(store_id).name + "\n\n");
+    
+     for(var i = 0; i < c_array.length; i++){          
+        if(c_array[i].store_id === store_id){
+          var address = this.getAddressById(c_array[i].address_id);
+         
+          console.log("Customer " + c_array[i].customer_id + ": " + c_array[i].first_name + " " +
+                       c_array[i].last_name + " " +"(" + c_array[i].email + ")");
+          console.log("Home Address: " + address.address + " " + address.city + ", " +
+                       address.province + ". " + address.postal_code); // getAddressById();
+          console.log("Joined: " + c_array[i].add_date);
+          console.log("\n");    
+         }
+     } 
+  },
+  
+  removeCustomerById: function(customer_id){
+    var c_array = this.customers;
+    for(var i = 0; i < c_array.length; i++){
+       if(c_array[i].customer_id === customer_id){
+         var del_add = c_array[i].address_id;
+         c_array.splice(i, 1);
+         this.removeAddressById(del_add);
+       }
+    }
+  },
+  
+  
+  
+  /***ALL ADDRESSES METHODS***/
+  
+  addAddress: function(addressObj){
+    this.addresses.push(addressObj);
+  },
+  
+  getAddressById: function(address_id){
+    var a_array = this.addresses;
+    for(var i = 0; i < a_array.length; i++){
+      if(a_array[i].address_id === address_id){
+         return a_array[i];
       }
     }
   },
-  addStore: function(someStoreObj){
-    this.stores.push(someStoreObj);
+  
+  outputAllAddresses: function(){
+    var a_array = this.addresses; 
+    console.log("All Addresses"); 
+    console.log("\n");
+    for(var i = 0; i < a_array.length; i++){   
+      console.log("Address " + a_array[i].address_id + ": " + a_array[i].address + " " +
+                   a_array[i].city + ", " + a_array[i].province + ". " + a_array[i].postal_code);
+    }
+    console.log("\n");
   },
-  addStore: function(customerObj){
-    customerObj.data.add_date = new Date();
-    this.customer.push(customerObj)
-  },
-  addAddress: function(addressObj){
-    this.customer.push(addressObj)
-  },
-  outputCustomerById: function(someId){
-    //complete this fucntion
-  }
-};
-
-
-CustomerDB.insertData(allData);
+  
  
+  // removeAddressById( address_id );
+  removeAddressById: function(address_id){
+    var a_array = this.addresses;
+    var counter = 0;
+    var index = 0;
+    for(var i = 0; i < a_array.length; i++){
+      if(a_array[i].address_id === address_id){
+        index = i;
+        for(var i = 0; i < this.customers.length; i++){
+          if(this.customers[i].address_id === address_id){
+            counter =+ 1;
+          }
+        }
+        if(counter === 0){
+          a_array.splice(index, 1);
+        }
+      }
+    }
+  },
 
+  
+  
+  /***ALL STORES METHODS***/
+  
+  addStore: function(storeObj){
+    this.stores.push(storeObj);
+  }, 
+  
+  getStoreById: function(store_id){
+    var s_array = this.stores;
+    for(var i = 0; i < s_array.length; i++){
+      if(s_array[i].store_id === store_id){
+         return s_array[i];
+      }
+    }
+  },
+  
+  outputAllStores: function(){
+    var s_array = this.stores; 
+    console.log("All Stores"); 
+    console.log("\n");
+    for(var i = 0; i < s_array.length; i++){ 
+      var address = this.getAddressById(s_array[i].address_id);
+      
+      console.log("Store " + s_array[i].store_id + ": " + s_array[i].name)
+      
+      console.log("Location: " + address.address + " " + address.city + ", " +
+                   address.province + ". " + address.postal_code); // getAddressById();
+      console.log("\n");   
+    }
+  } 
+};
 
 /**********************************
  *          TEST DATA             *
@@ -88,7 +231,6 @@ CustomerDB.insertData(allData);
  *  correctness                   *
  **********************************/
 
-/*
 
 // Insert all Data into the Database
 
@@ -139,4 +281,3 @@ console.log("CustomerDB.outputAllAddresses();\n\n--------------------------\n\n"
 CustomerDB.outputAllAddresses();
 console.log("--------------------------\n\n"); 
 
-*/
