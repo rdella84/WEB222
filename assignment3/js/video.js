@@ -10,3 +10,18 @@ var video = {
         {src: "https://scs.senecac.on.ca/~patrick.crawford/shared/fall-2016/int222/movie.webm", type: "video/webm"}
     ]
 };
+
+window.onload = function(){
+    var videoContainer = document.querySelector("#video");
+
+    var myvideo = "";
+
+    myvideo += "<video width= '" + video.width + "'" + "height= '" + video.height + "'" + "controls >"
+
+    for(var i = 0; i < video.source.length; i++){
+        myvideo += "<source src= '" + video.source[i].src + "'" + " type= '" + video.source[i].type + "'/>"
+    }
+    myvideo += "</video>";
+
+    videoContainer.innerHTML += myvideo;
+};
